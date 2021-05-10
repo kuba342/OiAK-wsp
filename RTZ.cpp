@@ -9,6 +9,10 @@ RTZ::RTZ(int n, int d){
     this->Xminus = 0;
     this->Yplus = 0;
     this->Yminus = 0;
+    this->Kplus = 0;
+    this->Kminus = 0;
+    this->Aplus = 0;
+    this->Aminus = 0;
 }
 
 RTZ::~RTZ(){
