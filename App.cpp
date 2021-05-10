@@ -34,6 +34,9 @@ void App::mainLoop(){
             this->n = number;
         }
         else{
+            system("cls");
+            std::cout << "Niepoprawne dane!";
+            sleep(3);
             continue;
         }
         std::cout << "\n";
@@ -46,9 +49,13 @@ void App::mainLoop(){
             this->d = number;
         }
         else{
+            system("cls");
+            std::cout << "Niepoprawne dane!";
+            sleep(3);
             continue;
         }
 
+        //Reszta operacji związanych z tworzeniem obiektów klas RTZ, FR i RTE
     }
 }
 
