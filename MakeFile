@@ -1,0 +1,3 @@
+App: 
+	g++ -o App main.cpp App.cpp AdditionalLib.cpp
+	
