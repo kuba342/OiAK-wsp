@@ -13,9 +13,6 @@ private:
     int Kminus;
     int Aplus;
     int Aminus;
-public:
-    RTZ(int n, int d);
-    ~RTZ();
     //Obliczenia parametrów
     void calc_Kplus();
     void calc_Kminus();
@@ -25,6 +22,12 @@ public:
     void calc_Yminus();
     void calc_Aplus();
     void calc_Aminus();
+public:
+    int max_int;
+    RTZ(int n, int d);
+    ~RTZ();
+    void count_all();
+    void show_param();
     //Część decyzyjna (Wybranie Kplus lub KMinus itd.) 
     /*Przemyśleć*/
 };

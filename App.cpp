@@ -1,6 +1,7 @@
 #include "App.hpp"
 #include <iostream>
 #include <unistd.h>
+#include "RTZ.hpp"
 
 using namespace std;
 
@@ -55,6 +56,10 @@ void App::mainLoop(){
             continue;
         }
 
+        this->rtz = new RTZ(this->n, this->d);
+        this->rtz->count_all();
+        this->rtz->show_param();
+        std::cin.get();
         //Reszta operacji związanych z tworzeniem obiektów klas RTZ, FR i RTE
     }
 }

@@ -3,11 +3,13 @@
 
 #include "AdditionalLib.hpp"
 #include <string>
+#include "RTZ.hpp"
 
 class App
 {
 private:
     AdditionalLib* lib;
+    RTZ* rtz;
     int n;          //Liczba bitów n - podstawowa zależność
     int d;          //Stały dzielnik d
     
