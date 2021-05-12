@@ -52,7 +52,7 @@ def minh(a, b):
 			c |= (a & mask) 			# Set bit in c if the same is set in a (and b for that matter).
 			a &= ~mask		 			# Clear this bit in a.
 		else:
-			c += 2**ceil(log2C(a))
+			c += 2**ceil(log2(a))
 			break
 		
 		mask >>= 1;
@@ -88,7 +88,7 @@ def findKab(d, n, scheme):
 		
 		return kPlus, a, b
 	else:
-		a = finAMinus(kMinus, d)
+		a = findAMinus(kMinus, d)
 		b = findBMinus(kMinus, a, d, n, scheme)
 		
 		return kMinus, a, b
