@@ -1,10 +1,9 @@
-import functions
 
 from math import floor, ceil, log2
 
 
 XPlus = {
-	'rtz': lambda d, n: d + n # Jakieś wyrażenie zamiast 'd + n'
+	'rtz': lambda d, n: d + n # Jakieś wyrażenie zamiast 'd + n' 
 }
 
 XMinus = {}
