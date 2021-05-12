@@ -1,4 +1,7 @@
 
+from math import floor, ceil, log2
+
+
 XPlus = {
 	'rtz': lambda d, n: d + n # Jakieś wyrażenie zamiast 'd + n' 
 }
@@ -8,33 +11,42 @@ YPlus = {}
 YMinus = {}
 
 
-def findKPlus(k, d, n, scheme: str):
-	pass
+def findK(d, n, x, sign):
+	for k in range(n):
+		exp = 2**k / ((sign * 2**k) % d)
+		if exp > x:
+			return k
+		
+	raise Exception('Could not find suitable k.')
+
+
+def findKPlus(d, n, scheme: str):
+	return findK(d, n, XPlus[scheme](d, n), -1)
 	
 
-def findKMinus(k, d, n, scheme: str):
-	pass
+def findKMinus(d, n, scheme: str):
+	return findK(d, n, XMinus[scheme](d, n), 1)
 
 
 def findAPlus(k, d):
-	pass
+	return ceil(2**k / d)
 
 
 def findAMinus(k, d):
-	pass
+	return floor(2**k / d)
+	
+
+def findB(y):
+	return minh(*y)
 	
 	
 def findBPlus(k, a, d, n, scheme: str):
-	return findB(k, a, YPlus[scheme](k, a, d, n))
+	return findB(YPlus[scheme](k, a, d, n))
 	
 	
 def findBMinus(k, a, d, n, scheme: str):
-	return findB(k, a, YMinus[scheme](k, a, d, n))
+	return findB(YMinus[scheme](k, a, d, n))
 	
-
-def findB(k, a, y):
-	pass
-
 
 def findAkb(d, n):
 	pass
