@@ -5,11 +5,11 @@ YPlus = {}
 YMinus = {}
 
 
-def findKPlus(k, d, scheme: str):
+def findKPlus(k, d, n, scheme: str):
 	pass
 	
 
-def findKMinus(k, d, scheme: str):
+def findKMinus(k, d, n, scheme: str):
 	pass
 
 
@@ -21,19 +21,19 @@ def findAMinus(k, d):
 	pass
 	
 	
-def findBPlus(k, a, scheme: str):
-	return findB(k, a, YPlus[scheme](k, a))
+def findBPlus(k, a, d, n, scheme: str):
+	return findB(k, a, YPlus[scheme](k, a, d, n))
 	
 	
-def findBMinus(k, a, scheme: str):
-	return findB(k, a, YMinus[scheme](k, a))
+def findBMinus(k, a, d, n, scheme: str):
+	return findB(k, a, YMinus[scheme](k, a, d, n))
 	
 
 def findB(k, a, y):
 	pass
 
 
-def findAkb(n, z):
+def findAkb(d, n):
 	pass
 
 
