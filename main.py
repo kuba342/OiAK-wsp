@@ -1,6 +1,7 @@
+import functions
 
 XPlus = {
-	'rtz': lambda d, n: d + n # Jakieś wyrażenie zamiast 'd + n' 
+	'rtz': lambda d, n: d + n # Jakieś wyrażenie zamiast 'd + n'
 }
 
 XMinus = {}
