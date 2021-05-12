@@ -1,14 +1,39 @@
 
 from math import floor, ceil, log2
+import sys
+
+import functions
 
 
 XPlus = {
-	'rtz': lambda d, n: d + n # Jakieś wyrażenie zamiast 'd + n' 
+	'rtz': functions.rtz_Xplus
 }
 
-XMinus = {}
-YPlus = {}
-YMinus = {}
+XMinus = {
+	'rtz': functions.rtz_Xminus
+}
+
+YPlus = {
+	'rtz': functions.rtz_Yplus
+}
+
+YMinus = {
+	'rtz': functions.rtz_Yminus
+}
+
+
+def isRtn(v, x, d):
+	division = x / d
+	if math.isclose(division):
+		return v == division
+	else:
+		return floor(division) == v or ceil(division) == v
+
+test = {
+	'rtz': lambda v, x, d: v == floor(x / d),
+	'rte': isRtn,	# Wg. artykułu, to wychodzi na to samo.
+	'rtn': isRtn
+}
 
 
 def findK(d, x, sign):
@@ -96,23 +121,28 @@ def findKab(d, n, scheme):
 	
 def div(x, k, a, b, n):
 	return floor((a * x + b) / 2 ** k) % 2**n
+	
+
+def usage():
+	print(f'Usage: d n {"(" + " or ".join(XPlus.keys()) + ")"}')
+	print('Returns: k a b')
 
 
 def main():
-	x = 44
-	d = 11
-	n = 6
+	if len(sys.argv) != 4:
+		usage()
+		exit(1)
+
+	d = int(sys.argv[1])
+	n = int(sys.argv[2])
+	scheme = sys.argv[3]
 	
-	# Parsing arguments and sewch.
-	#print(findKab(11, 6, 'rtz'))
-	print(div(x, 8, 23, 16, n), floor(x / d))
+	if scheme not in XPlus.keys():
+		usage()
+		exit(1)
+		
+	print(*findKab(d, n, scheme))
 
 
-# Press the green button in the gutter to run the script.
 if __name__ == '__main__':
     main()
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
-
-
-# Yooooo, eyyy.
