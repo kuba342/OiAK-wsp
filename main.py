@@ -45,19 +45,17 @@ def findAMinus(k, d):
 	
 def minh(a, b):
 	p = floor(max(log2(a), log2(b)))	# Get position of the most significant bit.
-	mask = 2**p;						# We'll use a mask to get to each bit.
-	c = 0;
-	while (mask > 0) {
-		if ((a & mask) == (b & mask)) {
-			c |= (a & mask); // Set bit in c if the same is set in a (and b for that matter).
-			a &= ~mask;		 // Clear this bit in a.
-		} else {
-			c += TWO(log2Ceil(a));
-			break;
-		}
+	mask = 2**p							# We'll use a mask to get to each bit.
+	c = 0
+	while (mask > 0):
+		if ((a & mask) == (b & mask)):
+			c |= (a & mask) 			# Set bit in c if the same is set in a (and b for that matter).
+			a &= ~mask		 			# Clear this bit in a.
+		else:
+			c += 2**ceil(log2C(a))
+			break
 		
 		mask >>= 1;
-	}
 	
 	return c;
 	
@@ -94,11 +92,20 @@ def findKab(d, n, scheme):
 		b = findBMinus(kMinus, a, d, n, scheme)
 		
 		return kMinus, a, b
+		
+	
+def div(x, k, a, b, n):
+	return floor((a * x + b) / 2 ** k) % 2**n
 
 
 def main():
+	x = 44
+	d = 11
+	n = 6
+	
 	# Parsing arguments and sewch.
-	print(findKab(11, 6, 'rtz'))
+	#print(findKab(11, 6, 'rtz'))
+	print(div(x, 8, 23, 16, n), floor(x / d))
 
 
 # Press the green button in the gutter to run the script.
