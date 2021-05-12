@@ -1,5 +1,8 @@
 
-XPlus = {}
+XPlus = {
+	'rtz': lambda d, n: d + n # Jakieś wyrażenie zamiast 'd + n' 
+}
+
 XMinus = {}
 YPlus = {}
 YMinus = {}
@@ -39,7 +42,7 @@ def findAkb(d, n):
 
 def main():
 	# Parsing arguments and sewch.
-	pass
+	print(XPlus['rtz'](1, 2))
 
 
 # Press the green button in the gutter to run the script.
