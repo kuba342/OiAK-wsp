@@ -11,33 +11,62 @@ YPlus = {}
 YMinus = {}
 
 
-def findK(d, n, x, sign):
-	for k in range(n):
+def findK(d, x, sign):
+	k = 0
+	while True:
 		exp = 2**k / ((sign * 2**k) % d)
 		if exp > x:
 			return k
 		
-	raise Exception('Could not find suitable k.')
+		k += 1
 
 
 def findKPlus(d, n, scheme: str):
-	return findK(d, n, XPlus[scheme](d, n), -1)
+	return findK(d, XPlus[scheme](d, n), -1)
 	
 
 def findKMinus(d, n, scheme: str):
-	return findK(d, n, XMinus[scheme](d, n), 1)
+	return findK(d, XMinus[scheme](d, n), 1)
 
 
 def findAPlus(k, d):
-	return ceil(2**k / d)
+	a = ceil(2**k / d)
+	assert a > 0
+
+	return a
 
 
 def findAMinus(k, d):
-	return floor(2**k / d)
+	a = floor(2**k / d)
+	assert a > 0
+	
+	return a
+
+	
+def minh(a, b):
+	p = floor(max(log2(a), log2(b)))	# Get position of the most significant bit.
+	mask = 2**p;						# We'll use a mask to get to each bit.
+	c = 0;
+	while (mask > 0) {
+		if ((a & mask) == (b & mask)) {
+			c |= (a & mask); // Set bit in c if the same is set in a (and b for that matter).
+			a &= ~mask;		 // Clear this bit in a.
+		} else {
+			c += TWO(log2Ceil(a));
+			break;
+		}
+		
+		mask >>= 1;
+	}
+	
+	return c;
 	
 
 def findB(y):
-	return minh(*y)
+	b = minh(*y)
+	assert b >= 0
+	
+	return b
 	
 	
 def findBPlus(k, a, d, n, scheme: str):
@@ -48,13 +77,28 @@ def findBMinus(k, a, d, n, scheme: str):
 	return findB(YMinus[scheme](k, a, d, n))
 	
 
-def findAkb(d, n):
-	pass
+def findKab(d, n, scheme):
+	kPlus = findKPlus(d, n, scheme)
+	kMinus = findKMinus(d, n, scheme)
+	
+	assert kPlus >= 0
+	assert kMinus >= 0
+	
+	if kPlus < kMinus:
+		a = findAPlus(kPlus, d)
+		b = findBPlus(kPlus, a, d, n, scheme)
+		
+		return kPlus, a, b
+	else:
+		a = finAMinus(kMinus, d)
+		b = findBMinus(kMinus, a, d, n, scheme)
+		
+		return kMinus, a, b
 
 
 def main():
 	# Parsing arguments and sewch.
-	print(XPlus['rtz'](1, 2))
+	print(findKab(11, 6, 'rtz'))
 
 
 # Press the green button in the gutter to run the script.
