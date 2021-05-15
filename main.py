@@ -155,6 +155,10 @@ def main():
 		usage()
 		exit(1)
 		
+	if d % 2 == 0:
+		print('d must be odd.')
+		exit(1)
+		
 		
 	k, a, b = findKab(d, n, scheme)
 		

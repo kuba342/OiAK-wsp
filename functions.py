@@ -34,6 +34,8 @@ def rtz_Yminus(k,a,d,n):
 
 def fr_Yplus(k,a,d,n):
     return (0,0)
+	
+
 def fr_Yminus(k,a,d,n):
     result_1 = (2**k - a*d) * math.floor((2**n)/d)
     result_2 = (2**k) - 1
