@@ -24,14 +24,15 @@ def rte_Xminus(d,n):
     result = d * math.floor((2**(n+1) - d - 3)/(2*d)) + 1
     return result
 
-def rtz_Yplus():
+def rtz_Yplus(k,a,d,n):
     return (0,0)
+
 def rtz_Yminus(k,a,d,n):
     result_1 = ( (2**k - a*d) * math.floor((2**n)/d) )
     result_2 = (2**k - a*(d-1) - 1)
     return result_1, result_2
 
-def fr_Yplus():
+def fr_Yplus(k,a,d,n):
     return (0,0)
 def fr_Yminus(k,a,d,n):
     result_1 = (2**k - a*d) * math.floor((2**n)/d)

@@ -6,33 +6,38 @@ import functions
 
 
 XPlus = {
-	'rtz': functions.rtz_Xplus
+	'rtz': functions.rtz_Xplus,
+	'rte': functions.rte_Xplus,
+	'fr': functions.fr_Xplus
 }
 
 XMinus = {
-	'rtz': functions.rtz_Xminus
+	'rtz': functions.rtz_Xminus,
+	'rte': functions.rte_Xminus,
+	'fr': functions.fr_Xminus
 }
 
 YPlus = {
-	'rtz': functions.rtz_Yplus
+	'rtz': functions.rtz_Yplus,
+	'rte': functions.rte_Yplus,
+	'fr': functions.fr_Yplus
 }
 
 YMinus = {
-	'rtz': functions.rtz_Yminus
+	'rtz': functions.rtz_Yminus,
+	'rte': functions.rte_Yminus,
+	'fr': functions.fr_Yminus
 }
 
 
 def isRtn(v, x, d):
 	division = x / d
-	if math.isclose(division):
-		return v == division
-	else:
-		return floor(division) == v or ceil(division) == v
+	return floor(division) == v or ceil(division) == v
 
 test = {
 	'rtz': lambda v, x, d: v == floor(x / d),
 	'rte': isRtn,	# Wg. artykułu, to wychodzi na to samo.
-	'rtn': isRtn
+	'fr': isRtn
 }
 
 
@@ -69,7 +74,7 @@ def findAMinus(k, d):
 
 	
 def minh(a, b):
-	p = floor(max(log2(a), log2(b)))	# Get position of the most significant bit.
+	p = floor(max(log2(a), log2(b))) if a != 0 and b != 0 else 0	# Get position of the most significant bit.
 	mask = 2**p							# We'll use a mask to get to each bit.
 	c = 0
 	while (mask > 0):
@@ -124,12 +129,21 @@ def div(x, k, a, b, n):
 	
 
 def usage():
-	print(f'Usage: d n {"(" + " or ".join(XPlus.keys()) + ")"}')
+	print(f'Usage: d n {"(" + " or ".join(XPlus.keys()) + ")"} test?')
 	print('Returns: k a b')
+	
+	
+def testRange(k, a, b, test, n, d):
+	invalids = []
+	for x in range(0, n):
+		if not test(div(x, k, a, b, n), x, d):
+			invalids.append(x)
+			
+	return invalids
 
 
 def main():
-	if len(sys.argv) != 4:
+	if len(sys.argv) < 4 and len(sys.argv) > 5:
 		usage()
 		exit(1)
 
@@ -141,7 +155,27 @@ def main():
 		usage()
 		exit(1)
 		
-	print(*findKab(d, n, scheme))
+		
+	k, a, b = findKab(d, n, scheme)
+		
+	if len(sys.argv) != 5:
+		print(k, a, b)
+		exit(0)
+	
+	if sys.argv[4] != 'test':
+		print('Fourth argument must read \'test\'.')
+		exit(0)
+		
+	invalids = testRange(k, a, b, test[scheme], n, d)
+	if len(invalids) > 0:
+		print('The result does not match {0} values.'.format(invalids))
+		print('The first ones being:', invalids[:30])	# Max number of invalid values shown.
+		exit(1)
+		
+	print('All tests passed!')
+			
+	
+	
 
 
 if __name__ == '__main__':
