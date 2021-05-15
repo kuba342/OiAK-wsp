@@ -30,14 +30,14 @@ YMinus = {
 }
 
 
-def isRtn(v, x, d):
+def isFr(v, x, d):
 	division = x / d
 	return floor(division) == v or ceil(division) == v
 
 test = {
 	'rtz': lambda v, x, d: v == floor(x / d),
-	'rte': isRtn,	# Wg. artykułu, to wychodzi na to samo.
-	'fr': isRtn
+	'rte': isFr,	# Wg. artykułu, to wychodzi na to samo.
+	'fr': isFr
 }
 
 
@@ -135,7 +135,7 @@ def usage():
 	
 def testRange(k, a, b, test, n, d):
 	invalids = []
-	for x in range(0, n):
+	for x in range(n):
 		if not test(div(x, k, a, b, n), x, d):
 			invalids.append(x)
 			
@@ -143,7 +143,7 @@ def testRange(k, a, b, test, n, d):
 
 
 def main():
-	if len(sys.argv) < 4 and len(sys.argv) > 5:
+	if len(sys.argv) < 4 or len(sys.argv) > 5:
 		usage()
 		exit(1)
 
@@ -159,7 +159,7 @@ def main():
 	k, a, b = findKab(d, n, scheme)
 		
 	if len(sys.argv) != 5:
-		print(k, a, b)
+		print(f'k={k}, a={a}, b={b}')
 		exit(0)
 	
 	if sys.argv[4] != 'test':
