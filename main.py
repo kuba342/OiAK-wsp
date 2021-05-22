@@ -74,7 +74,10 @@ def findAMinus(k, d):
 
 	
 def minh(a, b):
-	p = floor(max(log2(a), log2(b))) if a != 0 and b != 0 else 0	# Get position of the most significant bit.
+	# I might've accidentally fixed something...
+	msA = floor(log2(a)) if a != 0 else 0
+	msB = floor(log2(b)) if b != 0 else 0
+	p = max(msA, msB)					# Get position of the most significant bit.
 	mask = 2**p							# We'll use a mask to get to each bit.
 	c = 0
 	while (mask > 0):
@@ -82,7 +85,7 @@ def minh(a, b):
 			c |= (a & mask) 			# Set bit in c if the same is set in a (and b for that matter).
 			a &= ~mask		 			# Clear this bit in a.
 		else:
-			c += 2**ceil(log2(a))
+			c += 2**ceil(log2(a)) if a != 0 else 0
 			break
 		
 		mask >>= 1;
@@ -151,6 +154,7 @@ def main():
 	n = int(sys.argv[2])
 	scheme = sys.argv[3]
 	
+	# Input checking.
 	if scheme not in XPlus.keys():
 		usage()
 		exit(1)
