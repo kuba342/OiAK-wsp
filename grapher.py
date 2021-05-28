@@ -150,7 +150,7 @@ def combine(combs):
 
 def get_combinations(filename):
 	combs = []
-	with open(filename, 'r') as f:
+	with open(filename, 'r', encoding='utf-8') as f:
 		for line in f:
 			id = line.split()[0]
 			name = line[len(id):].strip()

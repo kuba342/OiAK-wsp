@@ -143,6 +143,14 @@ def testRange(k, a, b, test, n, d):
 			invalids.append(x)
 			
 	return invalids
+	
+
+def testBasic(k, a, b, test, n, d) -> bool:
+	for x in range(n):
+		if not test(div(x, k, a, b, n), x, d):
+			return False
+	
+	return True
 
 
 def main():

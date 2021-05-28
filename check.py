@@ -52,4 +52,5 @@ def main():
 	generate(int(argv[1]), argv[2], argv[3])
 	
 
-main()
+if __name__ == '__main__':
+    main()
