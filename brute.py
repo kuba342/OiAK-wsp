@@ -29,28 +29,30 @@ def checkDs(n, k, rounding):
 	
 
 
-def bruteK(n, scheme):
+def bruteK(n, prevK, scheme):
 	upper = 2*n
 	rounding = test[scheme]
 	
 	
-	for k in range(upper):
+	for k in range(prevK, upper):
 		if checkDs(n, k, rounding):
 			return k
 			
 	raise RuntimeError('No k to rule them all.')
 	
 
-def bruteAll(maxN, scheme):
+def bruteAll(minN, maxN, scheme):
 	nks = {}
-	for n in range(1, maxN):
-		nks[n] = bruteK(n, scheme)
+	prevK = 0
+	for n in range(minN, maxN + 1):			# Temporarily set to 25 (should be 1).
+		nks[n] = bruteK(n, prevK, scheme)
+		prevK = nks[n]
 		
 	return nks
 	
 
 def main():
-	nks = bruteAll(int(sys.argv[1]) + 1, 'rtz')
+	nks = bruteAll(int(sys.argv[1]), int(sys.argv[2]), 'rtz')
 	print(nks)
 	
 	# Transform for writing to file.
@@ -59,7 +61,7 @@ def main():
 		ns.append(n)
 		ks.append(k)
 		
-	with open(sys.argv[2], 'w', encoding='utf-8') as f:
+	with open(sys.argv[3], 'w', encoding='utf-8') as f:
 		save(f, 'nk,Najmniejsze k, które pasuje dla wszystkich d.,n,k,k', ns, ks)
 	
 	
