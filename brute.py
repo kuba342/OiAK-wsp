@@ -21,11 +21,15 @@ def findA_B(n, d, rounding, k) -> (int, int):
 	
 	
 def checkDs(n, k, rounding):
+	l = []
 	for d in range(3, 2**n, 2):
 		if findA_B(n, d, rounding, k) is None:
-			return False
+			l.append(d)
+			
+	if k == 8:
+		print(l)
 		
-	return True
+	return len(l) == 0
 	
 
 
@@ -43,10 +47,10 @@ def bruteK(n, prevK, scheme):
 
 def bruteAll(minN, maxN, scheme):
 	nks = {}
-	prevK = 0								# Temporarily set to 9.
+	prevK = 0
 	for n in range(minN, maxN + 1):
 		nks[n] = bruteK(n, prevK, scheme)
-		prevK = nks[n]
+		#prevK = nks[n]
 		print(n)
 		
 	return nks

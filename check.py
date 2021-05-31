@@ -36,12 +36,14 @@ def generate(n, scheme, filename):
 	
 	# Get all ks, as, bs.
 	ks, a_s, bs = allD(n, ds, scheme)
+	k2s = [2**k for k in ks]
 	
 	# Save em.
 	with open(filename, 'w', encoding='utf-8') as f:
 		save(f, f'{n}ks,"Optymalne" k dla kolejnych wartosci d,d,k,k', ds, ks)
 		save(f, f'{n}as,"Optymalne" a dla kolejnych wartosci d,d,a,a', ds, a_s)
 		save(f, f'{n}bs,"Optymalne" b dla kolejnych wartosci d,d,b,b', ds, bs)
+		save(f, f'{n}k2s,"2^k dla kolejnych wartosci d,d,2^k,2^k', ds, k2s)
 		
 	
 def main():

@@ -128,7 +128,7 @@ def findKab(d, n, scheme):
 		
 	
 def div(x, k, a, b, n):
-	return floor((a * x + b) / 2 ** k) % 2**n
+	return floor((a * x + b) >> k) & (2**n - 1)
 	
 
 def usage():
