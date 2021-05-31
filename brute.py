@@ -13,7 +13,7 @@ def findA_B(n, d, rounding, k) -> (int, int):
 	kRange = 2**k
 	
 	for a in range(kRange):
-		for b in range(a):
+		for b in range(kRange):
 			if testBasic(k, a, b, rounding, n, d):
 				return (a, b)
 				
@@ -43,10 +43,11 @@ def bruteK(n, prevK, scheme):
 
 def bruteAll(minN, maxN, scheme):
 	nks = {}
-	prevK = 9								# Temporarily set to 9.
+	prevK = 0								# Temporarily set to 9.
 	for n in range(minN, maxN + 1):
 		nks[n] = bruteK(n, prevK, scheme)
 		prevK = nks[n]
+		print(n)
 		
 	return nks
 	

@@ -138,7 +138,7 @@ def usage():
 	
 def testRange(k, a, b, test, n, d):
 	invalids = []
-	for x in range(n):
+	for x in range(2**n):
 		if not test(div(x, k, a, b, n), x, d):
 			invalids.append(x)
 			
@@ -146,7 +146,7 @@ def testRange(k, a, b, test, n, d):
 	
 
 def testBasic(k, a, b, test, n, d) -> bool:
-	for x in range(n):
+	for x in range(2**n):
 		if not test(div(x, k, a, b, n), x, d):
 			return False
 	
