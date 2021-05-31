@@ -43,8 +43,8 @@ def bruteK(n, prevK, scheme):
 
 def bruteAll(minN, maxN, scheme):
 	nks = {}
-	prevK = 0
-	for n in range(minN, maxN + 1):			# Temporarily set to 25 (should be 1).
+	prevK = 9								# Temporarily set to 9.
+	for n in range(minN, maxN + 1):
 		nks[n] = bruteK(n, prevK, scheme)
 		prevK = nks[n]
 		

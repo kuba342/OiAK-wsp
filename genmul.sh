@@ -3,7 +3,7 @@
 
 # Should be self descriptive.
 BITS_MIN=8
-BITS_MAX=20	# Inclusive.
+BITS_MAX=8	# Inclusive.
 
 ROUNDING="rtz"
 
